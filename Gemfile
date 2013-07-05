@@ -6,9 +6,6 @@ gem 'rails', '4.0.0.rc2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
-# Use Slim templates
-gem 'slim-rails'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc2'
 
@@ -46,3 +43,14 @@ end
 
 gem 'ember-rails'
 gem 'ember-source', '1.0.0.rc6.2'
+gem 'emblem-rails'
+
+gem 'rspec-rails', group: [:development, :test]
+gem 'spork-rails', group: [:development, :test], github: 'railstutorial/spork-rails'
+
+group :development do
+  gem 'guard'
+  gem 'guard-spork'
+  gem 'guard-bundler'
+  gem 'guard-rspec'
+end
