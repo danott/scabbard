@@ -2,7 +2,7 @@ class ReferencesController < ApplicationController
   respond_to :json, :html
 
   def index
-    @references = Reference.all
+    @references = @person.references
     respond_with @references
   end
 
