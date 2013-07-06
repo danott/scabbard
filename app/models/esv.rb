@@ -1,9 +1,9 @@
 require 'net/http'
 
-class ReferenceFinder
-  include Singleton
+class ESV
+  class PassageNotFound < StandardError; end;
 
-  class ReferenceNotFound < StandardError; end;
+  include Singleton
 
   API_ENDPOINT = 'http://www.esvapi.org/v2/rest/passageQuery'
   API_KEY = 'IP'
@@ -26,27 +26,20 @@ class ReferenceFinder
     :'key' => API_KEY
   }
 
-  def search(passage)
-    build_reference(request_for_esv_formatted_html(passage))
+  def passage_query(passage)
+    request_for_esv_formatted_html(passage)
   end
 
-  def self.search(passage)
-    instance.search(passage)
+  def self.passage_query(passage)
+    instance.passage_query(passage)
   end
 
   private
 
   def request_for_esv_formatted_html(passage)
     params = API_PARAMS.merge(:passage => passage).to_param
-    Net::HTTP.get(URI.parse([API_ENDPOINT, params].join('?')))
-  end
-
-  def build_reference(esv_formatted_html)
-    raise ReferenceNotFound if esv_formatted_html.match(/^ERROR:/)
-    Reference.new(title: extract_title(esv_formatted_html), html: esv_formatted_html)
-  end
-
-  def extract_title(esv_formatted_html)
-    esv_formatted_html.match(%r{<h2>(?<title>.*)</h2>})[:title]
+    esv_formatted_html = Net::HTTP.get(URI.parse([API_ENDPOINT, params].join('?')))
+    raise PassageNotFound if esv_formatted_html.match(/^ERROR:/)
+    return esv_formatted_html
   end
 end

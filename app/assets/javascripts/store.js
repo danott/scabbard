@@ -5,5 +5,6 @@ Scabbard.RESTAdapter = DS.RESTAdapter.extend({
 });
 
 Scabbard.Store = DS.Store.extend({
-  adapter: Scabbard.RESTAdapter
+  // adapter: Scabbard.RESTAdapter
+  adapter: DS.LSAdapter
 });

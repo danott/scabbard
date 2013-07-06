@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130705092628) do
+ActiveRecord::Schema.define(version: 20130706061657) do
+
+  create_table "lookups", force: true do |t|
+    t.string   "passage"
+    t.integer  "reference_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "people", force: true do |t|
     t.string   "name"
@@ -31,6 +38,7 @@ ActiveRecord::Schema.define(version: 20130705092628) do
   create_table "references", force: true do |t|
     t.string   "title"
     t.text     "html"
+    t.string   "sha"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

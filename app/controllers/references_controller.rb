@@ -2,12 +2,17 @@ class ReferencesController < ApplicationController
   respond_to :json, :html
 
   def index
-    @references = @person.references
+    @references = Reference.all
     respond_with @references
   end
 
   def show
-    @reference = Reference.find(params[:id])
+    @reference = Reference.find_by! :sha, params.require(:id)
+    respond_with @reference
+  end
+
+  def lookup
+    @reference = Lookup.passage_query(params.require(:passage)).reference
     respond_with @reference
   end
 end
