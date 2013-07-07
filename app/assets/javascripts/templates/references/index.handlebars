@@ -1,5 +1,10 @@
+{{#linkTo 'references.new'}}New{{/linkTo}}
+
 <ul>
   {{#each item in model}}
-    <li>{{#linkTo 'references.reference' item}}{{item.title}}{{/linkTo}}</li>
+    <li>
+      {{#linkTo 'references.reference' item}}{{item.title}}{{/linkTo}}
+      <button {{action 'removeReference' item}}>&times;</button>
+    </li>
   {{/each}}
 </ul>
