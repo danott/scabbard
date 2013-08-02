@@ -1,4 +1,4 @@
-Scabbard.ReferencesNewController = Ember.ObjectController.extend({
+Scabbard.ReferencesController = Ember.ArrayController.extend({
   lookup: function() {
     var jqxhr = jQuery.getJSON(this.endpoint, {passage: this.get('passage')});
     jqxhr.done(this.lookupFound.bind(this));
@@ -17,7 +17,7 @@ Scabbard.ReferencesNewController = Ember.ObjectController.extend({
       reference = Scabbard.Reference.createRecord(json.reference);
       reference.save();
     }
-    this.transitionToRoute('references.reference', reference);
+    this.transitionToRoute('reference', reference);
   },
 
   lookupNotFound: function(jqxhr, textStatus, error) {
@@ -26,5 +26,10 @@ Scabbard.ReferencesNewController = Ember.ObjectController.extend({
 
   lookupFinished: function(mixedA, textStatus, mixedB) {
     console.log("lookup finished", arguments);
+  },
+
+  removeReference: function(reference) {
+    reference.deleteRecord();
+    reference.save();
   }
 });

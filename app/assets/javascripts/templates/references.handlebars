@@ -1,1 +1,10 @@
-{{outlet}}
+{{view Ember.TextField placeholder="Isaiah 40:8" valueBinding="passage" action="lookup"}}
+
+<ul>
+  {{#each item in model}}
+    <li>
+      {{#linkTo 'reference' item}}{{item.title}}{{/linkTo}}
+      <button {{action 'removeReference' item}}>&times;</button>
+    </li>
+  {{/each}}
+</ul>
