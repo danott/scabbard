@@ -4,3 +4,7 @@ Scabbard.Router.map(function() {
     this.route('new');
   });
 });
+
+Scabbard.Router.reopen({
+  location: 'history'
+});

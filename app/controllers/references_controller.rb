@@ -7,7 +7,7 @@ class ReferencesController < ApplicationController
   end
 
   def show
-    @reference = Reference.find_by! :sha, params.require(:id)
+    @reference = Reference.find_by! sha: params.require(:id)
     respond_with @reference
   end
 
