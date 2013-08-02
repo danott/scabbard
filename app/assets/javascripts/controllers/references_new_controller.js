@@ -1,10 +1,30 @@
 Scabbard.ReferencesNewController = Ember.ObjectController.extend({
-  passageQuery: function() {
-    var _controller = this;
-    jQuery.getJSON('/references/lookup.json', {passage: _controller.get('passage')}).done(function(json) {
-      var reference = Scabbard.Reference.createRecord(json.reference);
+  lookup: function() {
+    var jqxhr = jQuery.getJSON(this.endpoint, {passage: this.get('passage')});
+    jqxhr.done(this.lookupFound.bind(this));
+    jqxhr.fail(this.lookupNotFound.bind(this));
+    jqxhr.always(this.lookupFinished.bind(this));
+  },
+
+  endpoint: '/references/lookup.json',
+
+  lookupFound: function(json, textStatus, jqxhr) {
+    console.log("lookup found", arguments);
+    var reference;
+    if (Scabbard.Reference.exists('id', json.reference.id)) {
+      reference = Scabbard.Reference.find(json.reference.id);
+    } else {
+      reference = Scabbard.Reference.createRecord(json.reference);
       reference.save();
-      _controller.transitionToRoute('references.reference', reference);
-    });
+    }
+    this.transitionToRoute('references.reference', reference);
+  },
+
+  lookupNotFound: function(jqxhr, textStatus, error) {
+    console.log("lookup not found", arguments);
+  },
+
+  lookupFinished: function(mixedA, textStatus, mixedB) {
+    console.log("lookup finished", arguments);
   }
 });

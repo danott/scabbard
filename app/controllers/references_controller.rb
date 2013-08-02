@@ -15,4 +15,8 @@ class ReferencesController < ApplicationController
     @reference = Lookup.passage_query(params.require(:passage)).reference
     respond_with @reference
   end
+
+  rescue_from ESV::PassageNotFound do |exception|
+    head :not_found
+  end
 end
