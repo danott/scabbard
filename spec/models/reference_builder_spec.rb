@@ -6,10 +6,10 @@ end
 
 describe ReferenceBuilder do
   subject { ReferenceBuilder }
-  let(:reference) { subject.esv_html(esv_html_fixture) }
 
   context "#esv_html" do
-    it "should build References" do
+    let(:reference) { subject.esv_html(esv_html_fixture) }
+    it "should build a Reference" do
       reference.should be_kind_of(Reference)
     end
 
@@ -18,7 +18,7 @@ describe ReferenceBuilder do
     end
 
     it "should not persist record" do
-      reference.persisted?.should be_false
+      reference.should_not be_persisted
     end
   end
 end

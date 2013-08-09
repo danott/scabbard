@@ -5,7 +5,7 @@ describe Lookup do
 
   context "Lookup::passage_query" do
     it "should return a Lookup" do
-      subject.passage_query('Isaiah 40:8').should be_kind_of(Lookup)
+      subject.passage_query('Isaiah 40:8').should be_a(Lookup)
     end
 
     it "should cache api results in database" do

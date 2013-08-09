@@ -21,8 +21,8 @@ class Reference < ActiveRecord::Base
 
   private
 
-  def write_title_and_sha_attributes(_title)
-    write_attribute(:title, _title)
-    write_attribute(:sha, Digest::SHA1.hexdigest(_title))
+  def write_title_and_sha_attributes(title)
+    write_attribute(:title, title)
+    write_attribute(:sha, Digest::SHA1.hexdigest(title))
   end
 end
