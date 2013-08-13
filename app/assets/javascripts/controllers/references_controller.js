@@ -1,35 +1,29 @@
-Scabbard.ReferencesController = Ember.ArrayController.extend({
+Scabbard.ReferencesController = Ember.Controller.extend({
   lookup: function() {
-    var jqxhr = jQuery.getJSON(this.endpoint, {passage: this.get('passage')});
-    jqxhr.done(this.lookupFound.bind(this));
-    jqxhr.fail(this.lookupNotFound.bind(this));
-    jqxhr.always(this.lookupFinished.bind(this));
+    var jqxhr = jQuery.getJSON(this._endpoint, {passage: this.get('passage')});
+    jqxhr.done(this._lookupFound.bind(this));
+    jqxhr.fail(this._lookupNotFound.bind(this));
+    jqxhr.always(this._lookupFinished.bind(this));
   },
 
-  endpoint: '/references/lookup.json',
+  deleteReference: function(reference) {
+    reference.deleteRecord();
+    reference.save();
+  },
 
-  lookupFound: function(json, textStatus, jqxhr) {
-    console.log("lookup found", arguments);
-    var reference;
-    if (Scabbard.Reference.exists('id', json.reference.id)) {
-      reference = Scabbard.Reference.find(json.reference.id);
-    } else {
-      reference = Scabbard.Reference.createRecord(json.reference);
-      reference.save();
-    }
+  // PRIVATE
+
+  _endpoint: '/references/lookup.json',
+
+  _lookupFound: function(json, textStatus, jqxhr) {
+    var reference = Scabbard.Reference.findByIdOrCreate(json.reference);
     this.transitionToRoute('reference', reference);
   },
 
-  lookupNotFound: function(jqxhr, textStatus, error) {
-    console.log("lookup not found", arguments);
+  _lookupNotFound: function(jqxhr, textStatus, error) {
   },
 
-  lookupFinished: function(mixedA, textStatus, mixedB) {
-    console.log("lookup finished", arguments);
-  },
-
-  removeReference: function(reference) {
-    reference.deleteRecord();
-    reference.save();
+  _lookupFinished: function(mixedArgumentA, textStatus, mixedArgumentB) {
+    this.set('passage', ''); // this should work
   }
 });
