@@ -91,9 +91,6 @@ GEM
     jbuilder (1.4.2)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
-    jquery-rails (3.0.4)
-      railties (>= 3.0, < 5.0)
-      thor (>= 0.14, < 2.0)
     json (1.8.0)
     listen (1.2.2)
       rb-fsevent (>= 0.9.3)
@@ -195,7 +192,6 @@ DEPENDENCIES
   guard-rspec
   guard-spork
   jbuilder (~> 1.2)
-  jquery-rails
   pg
   rails (= 4.0.0.rc2)
   rspec-rails
