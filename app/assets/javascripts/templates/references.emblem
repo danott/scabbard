@@ -1,6 +1,0 @@
-Ember.TextField placeholder='Isaiah 40:8' valueBinding='passage' action='lookup'
-
-ul: each item in model: li
-  linkTo 'reference' item
-    item.title
-  button click='deleteReference item' &times
