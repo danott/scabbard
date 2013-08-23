@@ -24,6 +24,5 @@ Scabbard.ReferencesController = Ember.Controller.extend({
   },
 
   _lookupFinished: function(mixedArgumentA, textStatus, mixedArgumentB) {
-    this.set('passage', ''); // this should work
   }
 });
