@@ -53,3 +53,5 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-rspec'
 end
+
+gem 'skylight'
