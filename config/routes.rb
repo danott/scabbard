@@ -3,5 +3,5 @@ Scabbard::Application.routes.draw do
     get :lookup, on: :collection
   end
 
-  root 'ember#index'
+  get "(*redirect_path)", to: "batman#index", constraints: lambda { |request| request.format == "text/html" }
 end

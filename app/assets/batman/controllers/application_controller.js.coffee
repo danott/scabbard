@@ -1,0 +1,1 @@
+class Scabbard.ApplicationController extends Batman.Controller

@@ -17,8 +17,6 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    active_model_serializers (0.8.1)
-      activemodel (>= 3.0)
     activemodel (4.0.0.rc2)
       activesupport (= 4.0.0.rc2)
       builder (~> 3.1.0)
@@ -36,27 +34,20 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.12)
-    barber (0.4.2)
-      ember-source
-      execjs
-      handlebars-source
+    batman-rails (0.15.4)
+      railties (>= 3.2)
     builder (3.1.4)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.0.9)
+    coffee-rails (4.0.0)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0.beta, < 5.0)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.6.3)
     diff-lcs (1.2.4)
-    ember-data-source (0.13)
-      ember-source
-    ember-rails (0.13.0)
-      active_model_serializers
-      barber (>= 0.4.1)
-      ember-data-source
-      ember-source
-      execjs (>= 1.2)
-      handlebars-source
-      railties (>= 3.1)
-    ember-source (1.0.0.rc6.2)
-      handlebars-source (= 1.0.12)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -78,7 +69,6 @@ GEM
       childprocess (>= 0.2.3)
       guard (>= 1.1)
       spork (>= 0.8.4)
-    handlebars-source (1.0.12)
     hike (1.2.3)
     i18n (0.6.4)
     jbuilder (1.4.2)
@@ -188,8 +178,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ember-rails
-  ember-source (= 1.0.0.rc6.2)
+  batman-rails
+  coffee-rails
   guard
   guard-bundler
   guard-rspec

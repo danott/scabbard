@@ -13,6 +13,7 @@ gem 'sass-rails', '~> 4.0.0.rc2'
 gem 'slim-rails'
 
 # Use Uglifier as compressor for JavaScript assets
+gem 'coffee-rails'
 gem 'uglifier', '>= 1.3.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -41,8 +42,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'ember-rails'
-gem 'ember-source', '1.0.0.rc6.2'
+gem 'batman-rails'
 
 gem 'rspec-rails', group: [:development, :test]
 gem 'spork-rails', group: [:development, :test], github: 'railstutorial/spork-rails'
