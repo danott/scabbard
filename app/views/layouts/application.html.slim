@@ -7,5 +7,9 @@ html
     = javascript_include_tag "scabbard"
     = csrf_meta_tags
   body
-    noscript
-      = yield
+    div data-yield="main"
+      noscript
+        = yield
+
+    javascript:
+      Scabbard.run();

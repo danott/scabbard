@@ -11,6 +11,7 @@ gem 'sass-rails', '~> 4.0.0.rc2'
 
 # Use slim
 gem 'slim-rails'
+gem 'slim_assets'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'coffee-rails'
@@ -55,3 +56,4 @@ group :development do
 end
 
 gem 'skylight'
+gem "active_model_serializers"

@@ -16,20 +16,9 @@
 Batman.config.pathToHTML = '/assets/html'
 
 class Scabbard extends Batman.App
-  # @resources 'products'
-  # @resources 'discounts', except: ['edit']
-  # @resources 'customers', only: ['new', 'show']
+  @resources 'references', only: ['index', 'show'], ->
+    @collection 'lookup'
 
-  # @resources 'blogs', ->
-  #   @resources 'articles'
-
-  # @resources 'pages', ->
-  #   @collection 'count'
-  #   @member 'duplicate'
-
-  # @route 'apps', 'apps#index'
-  # @route 'apps/private', 'apps#private', as: 'privateApps'
-
-  @root 'main#index'
+  @root 'references#index'
 
 (global ? window).Scabbard = Scabbard

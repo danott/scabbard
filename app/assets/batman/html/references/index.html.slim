@@ -1,0 +1,6 @@
+form data-event-submit="lookup"
+  input type="text" data-bind="passage"
+
+ul
+  li data-foreach-reference="references"
+    a data-bind="reference.title" data-route="routes.references[reference]"
