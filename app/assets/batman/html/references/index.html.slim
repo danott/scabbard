@@ -1,5 +1,6 @@
-form data-event-submit="lookup"
-  input type="text" data-bind="passage"
+form data-formfor-lookup="lookup" data-event-submit="performLookup"
+  input type="text" data-bind="lookup.passage" data-bind-disabled="lookup.performing"
+  .errors
 
 ul
   li data-foreach-reference="references"
