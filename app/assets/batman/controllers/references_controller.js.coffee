@@ -9,26 +9,26 @@ class Scabbard.ReferencesController extends Scabbard.ApplicationController
     @set('reference', Scabbard.Reference.get('all.indexedByUnique.id').get(params.id))
 
   lookup: ->
-    jqxhr = jQuery.getJSON(@_endpoint, {passage: @get('passage')})
-    jqxhr.done(@_lookupFound.bind(@))
-    jqxhr.fail(@_lookupNotFound.bind(@))
-    jqxhr.always(@_lookupFinished.bind(@))
+    new Batman.Request
+      url: @_endpoint
+      data: @get('params')
+      success: @_lookupFound.bind(@)
+      error: @_lookupNotFound.bind(@)
 
   deleteReference: (reference) ->
-    reference.delete()
-    reference.save()
+    reference.destroy()
 
   # PRIVATE
 
   _endpoint: '/references/lookup.json'
 
-  _lookupFound: (json, textStatus, jqxhr) ->
+  @accessor 'params', get: ->
+    passage: @get('passage')
+
+  _lookupFound: (json) ->
     Scabbard.Reference.findOrCreate json.reference, (error, reference) =>
       @unset('passage')
       @redirect reference
 
   _lookupNotFound: (jqxhr, textStatus, error) ->
-    null
-
-  _lookupFinished: (mixedArgumentA, textStatus, mixedArgumentB) ->
-    null
+    Batman.developer.warn "Implement error case"

@@ -4,3 +4,4 @@ form data-event-submit="lookup"
 ul
   li data-foreach-reference="references"
     a data-bind="reference.title" data-route="routes.references[reference]"
+    a data-event-click="deleteReference | withArguments reference" &times;
