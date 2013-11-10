@@ -14,6 +14,7 @@
 #= require_tree ./views
 
 Batman.config.pathToHTML = '/assets/html'
+Batman.config.usePushState = false
 
 class Scabbard extends Batman.App
   @resources 'references', only: ['index', 'show'], ->

@@ -17,7 +17,7 @@ class Scabbard.Lookup extends Batman.Object
 
   _lookupFound: (json) ->
     Scabbard.Reference.findOrCreate json.reference, (error, reference) =>
-      @unset('passage')
+      @unset('passage', 'performing')
       @get('callback')?(reference)
 
   _lookupNotFound: (jqxhr) ->

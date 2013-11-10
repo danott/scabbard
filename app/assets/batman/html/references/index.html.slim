@@ -1,9 +1,12 @@
 form data-formfor-lookup="lookup" data-event-submit="performLookup"
   input type="text" data-bind="lookup.passage" data-bind-disabled="lookup.performing"
+  input type="submit" value="Search" data-bind-disabled="lookup.performing"
   .errors
 
-ul
-  li data-showif="references.length | not" No references yet
-  li data-foreach-reference="references"
-    a data-bind="reference.title" data-route="routes.references[reference]"
-    a data-event-click="deleteReference | withArguments reference" &times;
+div data-view="ReferencesListView"
+  a data-event-click="toggleEditing" data-bind="toggleEditingText"
+  ul
+    li data-showif="references.length | not" No references yet
+    li data-foreach-reference="references" data-view="ReferencesListItemView"
+      a data-bind="reference.title" data-route="routes.references[reference]"
+      a data-showif="editing" data-event-click="deleteReference | withArguments reference" &times;
