@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/danott/batman-rails.git
+  revision: 118deeaea40505273bf3c5a8a0e4a0e60f46f9b2
+  specs:
+    batman-rails (0.15.4)
+      railties (>= 3.2)
+
+GIT
   remote: git://github.com/railstutorial/spork-rails.git
   revision: 5db525af2f917047057f546bc1ac2574d1c6b11e
   specs:
@@ -36,8 +43,6 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.12)
-    batman-rails (0.15.4)
-      railties (>= 3.2)
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
@@ -187,7 +192,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
-  batman-rails
+  batman-rails!
   bourbon
   coffee-rails
   guard
