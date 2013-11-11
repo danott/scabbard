@@ -1,7 +1,7 @@
 class Scabbard.Lookup extends Batman.Object
   perform: (callback) ->
     @set('callback', callback)
-    @set('performing')
+    @set('performing', true)
     @unset('errors')
 
     new Batman.Request
