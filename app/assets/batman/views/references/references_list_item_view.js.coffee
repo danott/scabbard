@@ -5,5 +5,5 @@ class Scabbard.ReferencesListItemView extends Batman.View
   unsetEditing: ->
     @unset('editing')
 
-  deleteReference: (reference) ->
-    reference.destroy()
+  deleteReference: ->
+    @get('reference').destroy()
