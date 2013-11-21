@@ -44,7 +44,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'batman-rails', github: "danott/batman-rails"
+gem 'batman-rails', github: "danott/batman-rails", branch: "defineview_preloader"
 
 gem 'rspec-rails', group: [:development, :test]
 gem 'spork-rails', group: [:development, :test], github: 'railstutorial/spork-rails'
