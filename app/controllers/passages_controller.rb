@@ -11,8 +11,8 @@ class PassagesController < ApplicationController
     respond_with @passage
   end
 
-  def lookup
-    @passage = PassageQuery.find(params.require(:passage))
+  def query
+    @passage = PassageQuery.find(params.require(:query_string))
     respond_with @passage
   end
 

@@ -1,25 +1,26 @@
-class Scabbard.Lookup extends Batman.Object
+class Scabbard.PassageQuery extends Batman.Object
   perform: (callback) ->
     @set('callback', callback)
     @set('performing', true)
-    @unset('errors')
+    @unset('errors', 'passage')
 
     new Batman.Request
       url: @_endpoint
       data: @_params()
-      success: @_lookupFound.bind(@)
-      error: @_lookupNotFound.bind(@)
+      success: @_passageFound.bind(@)
+      error: @_passageNotFound.bind(@)
 
-  _endpoint: '/passages/lookup.json'
+  _endpoint: '/passages/query.json'
 
   _params: ->
-    passage: @get('passage')
+    query_string: @get('queryString')
 
-  _lookupFound: (json) ->
+  _passageFound: (json) ->
+    @unset('queryString', 'performing')
     Scabbard.Passage.findOrCreate json.passage, (error, passage) =>
-      @unset('passage', 'performing')
+      @set('passage', passage)
       @get('callback')?(passage)
 
-  _lookupNotFound: (jqxhr) ->
+  _passageNotFound: (jqxhr) ->
     @unset('performing')
     @set('errors', new Batman.ErrorsSet('passage', 'could not be found'))

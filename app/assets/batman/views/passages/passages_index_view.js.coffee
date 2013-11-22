@@ -1,7 +1,7 @@
 class Scabbard.PassagesIndexView extends Batman.View
   viewDidAppear: ->
-    @set('lookup', new Scabbard.Lookup())
+    @set('passageQuery', new Scabbard.PassageQuery())
 
-  performLookup: ->
-    @get('lookup').perform (passage) =>
+  performPassageQuery: ->
+    @get('passageQuery').perform (passage) =>
       Batman.redirect passage
