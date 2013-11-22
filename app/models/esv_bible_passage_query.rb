@@ -3,10 +3,14 @@ require 'net/http'
 class EsvBiblePassageQuery
   class PassageNotFound < StandardError; end;
 
-  attr_accessor :passage, :api_key, :api_endpoint
+  attr_accessor :query_string, :api_key, :api_endpoint
 
-  def initialize(passage, args = {})
-    @passage = passage
+  def self.find(query_string, *args)
+    new(query_string, *args)
+  end
+
+  def initialize(query_string, args = {})
+    @query_string = query_string
     @api_key = args.fetch(:api_key, 'IP')
     @api_endpoint = args.fetch(:api_endpoint, 'http://www.esvapi.org/v2/rest/passageQuery')
   end
@@ -40,7 +44,7 @@ class EsvBiblePassageQuery
       :'include-copyright' => false,
       :'output-format' => 'html',
       :'key' => api_key,
-      :'passage' => passage }
+      :'passage' => query_string }
   end
 
   def api_request_url
