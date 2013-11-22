@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20130706061657) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "lookups", force: true do |t|
-    t.string   "passage"
+  create_table "cached_passage_queries", force: true do |t|
+    t.string   "query_string"
     t.integer  "passage_id"
     t.datetime "created_at"
     t.datetime "updated_at"

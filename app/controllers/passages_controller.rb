@@ -12,7 +12,7 @@ class PassagesController < ApplicationController
   end
 
   def lookup
-    @passage = Lookup.passage_query(params.require(:passage)).passage
+    @passage = CachedPassageQuery.passage_query(params.require(:passage)).passage
     respond_with @passage
   end
 
