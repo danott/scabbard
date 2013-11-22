@@ -15,7 +15,8 @@ class Lookup < ActiveRecord::Base
   end
 
   def self.passage_query_api(passage)
-    reference = ReferenceBuilder.esv_html(ESV.passage_query(passage))
+    esv_bible_passage_query = EsvBiblePassageQuery.new(passage)
+    reference = Reference.new(title: esv_bible_passage_query.title, html: esv_bible_passage_query.html)
 
     unless reference.save
       reference = Reference.find_by(sha: reference.sha)

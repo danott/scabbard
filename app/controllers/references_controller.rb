@@ -16,7 +16,7 @@ class ReferencesController < ApplicationController
     respond_with @reference
   end
 
-  rescue_from ESV::PassageNotFound do |exception|
+  rescue_from EsvBiblePassageQuery::PassageNotFound do |exception|
     head :not_found
   end
 end
