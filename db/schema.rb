@@ -18,7 +18,15 @@ ActiveRecord::Schema.define(version: 20130706061657) do
 
   create_table "lookups", force: true do |t|
     t.string   "passage"
-    t.integer  "reference_id"
+    t.integer  "passage_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "passages", force: true do |t|
+    t.string   "title"
+    t.text     "html"
+    t.string   "sha"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,18 +38,10 @@ ActiveRecord::Schema.define(version: 20130706061657) do
     t.datetime "updated_at"
   end
 
-  create_table "person_references", force: true do |t|
+  create_table "person_passages", force: true do |t|
     t.integer  "person_id"
-    t.integer  "reference_id"
+    t.integer  "passage_id"
     t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "references", force: true do |t|
-    t.string   "title"
-    t.text     "html"
-    t.string   "sha"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

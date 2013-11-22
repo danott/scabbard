@@ -17,9 +17,9 @@ Batman.config.pathToHTML = '/assets/html'
 Batman.config.usePushState = false
 
 class Scabbard extends Batman.App
-  @resources 'references', only: ['index', 'show'], ->
+  @resources 'passages', only: ['index', 'show'], ->
     @collection 'lookup'
 
-  @root 'references#index'
+  @root 'passages#index'
 
 (global ? window).Scabbard = Scabbard

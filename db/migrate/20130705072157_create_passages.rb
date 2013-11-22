@@ -1,6 +1,6 @@
-class CreateReferences < ActiveRecord::Migration
+class CreatePassages < ActiveRecord::Migration
   def change
-    create_table :references do |t|
+    create_table :passages do |t|
       t.string :title
       t.text :html
       t.string :sha

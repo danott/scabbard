@@ -10,15 +10,15 @@ class Scabbard.Lookup extends Batman.Object
       success: @_lookupFound.bind(@)
       error: @_lookupNotFound.bind(@)
 
-  _endpoint: '/references/lookup.json'
+  _endpoint: '/passages/lookup.json'
 
   _params: ->
     passage: @get('passage')
 
   _lookupFound: (json) ->
-    Scabbard.Reference.findOrCreate json.reference, (error, reference) =>
+    Scabbard.Passage.findOrCreate json.passage, (error, passage) =>
       @unset('passage', 'performing')
-      @get('callback')?(reference)
+      @get('callback')?(passage)
 
   _lookupNotFound: (jqxhr) ->
     @unset('performing')

@@ -1,4 +1,4 @@
-class Reference < ActiveRecord::Base
+class Passage < ActiveRecord::Base
   validates_presence_of :title, :html, :sha
   validates_uniqueness_of :sha
 

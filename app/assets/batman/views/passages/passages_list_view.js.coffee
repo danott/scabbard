@@ -1,4 +1,4 @@
-class Scabbard.ReferencesListView extends Batman.View
+class Scabbard.PassagesListView extends Batman.View
   @accessor 'toggleEditingText', get: ->
     if @get('editing') then 'Done' else 'Edit'
 
