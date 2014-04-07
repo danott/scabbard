@@ -4,9 +4,3 @@ form data-formfor-passageQuery="passageQuery" data-event-submit="performPassageQ
   .errors
 
 div data-view="PassagesListView"
-  a data-event-click="toggleEditing" data-bind="toggleEditingText"
-  ul
-    li data-showif="passages.length | not" No passages yet
-    li data-foreach-passage="passages" data-view="PassagesListItemView"
-      a data-bind="passage.title" data-route="routes.passages[passage]"
-      a data-showif="editing" data-event-click="deletePassage" &times;
