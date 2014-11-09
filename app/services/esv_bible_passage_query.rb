@@ -15,8 +15,8 @@ class EsvBiblePassageQuery
     @api_endpoint = args.fetch(:api_endpoint, 'http://www.esvapi.org/v2/rest/passageQuery')
   end
 
-  def title
-    html.match(%r{<h2>(?<title>.*)</h2>})[:title]
+  def heading
+    html.match(%r{<h2>(?<heading>.*)</h2>})[:heading]
   end
 
   def html

@@ -1,11 +1,11 @@
 class ApplicationController < ActionController::Base
-  before_filter :load_person
+  before_filter :set_person
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  def load_person
+  def set_person
     @person = Person.first
   end
 end

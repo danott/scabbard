@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20130706061657) do
   end
 
   create_table "passages", force: true do |t|
-    t.string   "title"
+    t.string   "heading"
     t.text     "html"
     t.string   "sha"
     t.datetime "created_at"

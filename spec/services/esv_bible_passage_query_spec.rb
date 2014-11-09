@@ -14,8 +14,8 @@ describe EsvBiblePassageQuery do
       subject.html.gsub("\n", "").should == esv_html_fixture
     end
 
-    it "should correctly parse the title" do
-      subject.title.should == "Isaiah 40:8"
+    it "should correctly parse the heading" do
+      subject.heading.should == "Isaiah 40:8"
     end
   end
 

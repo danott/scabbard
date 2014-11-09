@@ -5,15 +5,11 @@ describe Passage do
     subject.html.should be {:html_safe?}
   end
 
-  context "#title=" do
+  context "#heading=" do
     it "should create sha" do
       expect {
-        subject.title = 'Isaiah 40:8'
+        subject.heading = 'Isaiah 40:8'
       }.to change { subject.sha }
-    end
-
-    it "should return set value" do
-      subject.send(:title=, 'Isaiah 40:8').should eql('Isaiah 40:8')
     end
   end
 

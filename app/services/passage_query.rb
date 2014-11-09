@@ -33,7 +33,7 @@ class PassageQuery
   end
 
   def passage_from_api
-    @passage_from_api ||= Passage.find_or_create_by(title: esv_passage.title, html: esv_passage.html)
+    @passage_from_api ||= Passage.find_or_create_by(heading: esv_passage.heading, html: esv_passage.html)
   end
 
   def esv_passage
