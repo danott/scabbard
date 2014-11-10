@@ -11,7 +11,7 @@ gem 'sass-rails'
 
 # Use slim
 gem 'slim-rails'
-gem 'slim_assets'
+gem 'turbolinks'
 gem 'bourbon'
 
 # Use Uglifier as compressor for JavaScript assets
@@ -31,6 +31,8 @@ group :development do
   gem 'guard-spork'
   gem 'guard-bundler'
   gem 'guard-rspec'
+  gem 'pry'
+  gem 'pry-remote'
 end
 
 gem "active_model_serializers"

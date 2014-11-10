@@ -8,4 +8,9 @@ class ApplicationController < ActionController::Base
   def set_person
     @person = Person.first
   end
+
+  def offline_enabled?
+    true
+  end
+  helper_method :offline_enabled?
 end
