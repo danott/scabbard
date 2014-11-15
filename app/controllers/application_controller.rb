@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def offline_enabled?
-    true
+    false
   end
   helper_method :offline_enabled?
 end

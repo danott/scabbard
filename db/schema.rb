@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20130706061657) do
     t.datetime "updated_at"
   end
 
+  create_table "people_passages", force: true do |t|
+    t.integer  "person_id"
+    t.integer  "passage_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "person_passages", force: true do |t|
     t.integer  "person_id"
     t.integer  "passage_id"

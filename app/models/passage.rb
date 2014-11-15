@@ -1,4 +1,7 @@
 class Passage < ActiveRecord::Base
+  has_many :person_passages
+  has_many :people, through: :person_passages
+
   validates :heading, presence: true
   validates :html,    presence: true
   validates :sha,     presence: true, uniqueness: true
@@ -11,7 +14,7 @@ class Passage < ActiveRecord::Base
     write_heading_and_sha_attributes(string)
   end
 
-  def sha=
+  def sha=(value)
     raise StandardError.new("Don't set Passage#sha manually")
   end
 

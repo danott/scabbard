@@ -1,8 +1,6 @@
 Scabbard::Application.routes.draw do
-  resources :passages, only: [:index, :show] do
-    get :query, on: :collection
-  end
+  resources :passages
 
-  resource :cache, controller: "cache_manifests",
-    constraints: { format: 'manifest' }
+  resources :passages, except: [:edit]
+  resource :cache, controller: "cache_manifests", constraints: { format: 'manifest' }
 end

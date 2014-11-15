@@ -3,7 +3,7 @@ class CacheManifestsController < ApplicationController
   before_filter :handle_offline_disabled
 
   def show
-    @passages = Passage.all
+    @passages = @person.passages
   end
 
   private

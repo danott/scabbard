@@ -1,22 +1,34 @@
 class PassagesController < ApplicationController
-  respond_to :json, :html
+  before_action :set_passage, only: [:show, :destroy]
 
   def index
-    @passages = Passage.all
-    respond_with @passages
+    @passages = @person.passages
   end
 
   def show
-    @passage = Passage.find_by! sha: params.require(:id)
-    respond_with @passage
   end
 
-  def query
-    @passage = PassageQuery.find(params.require(:query_string))
-    respond_with @passage
+  def new
+  end
+
+  def create
+    @passage = FindPassage.call(params.require(:query_string))
+    @person.passages << @passage unless @person.passages.include? @passage
+    redirect_to @passage
+  end
+
+  def destroy
+    @person.passages.delete(@passage)
+    redirect_to :passages
   end
 
   rescue_from EsvBiblePassageQuery::PassageNotFound do |exception|
     head :not_found
+  end
+
+  private
+
+  def set_passage
+    @passage = Passage.find_by! sha: params.require(:id)
   end
 end
