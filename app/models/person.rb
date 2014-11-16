@@ -1,6 +1,5 @@
 class Person < ActiveRecord::Base
-  has_many :person_passages
-  has_many :passages, through: :person_passages
+  has_and_belongs_to_many :passages
 
   validates_presence_of :name, :email
 end

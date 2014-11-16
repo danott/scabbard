@@ -75,10 +75,8 @@ class PassagesControllerTest < ActionController::TestCase
 
   test "destroying removes the passage from the person's list, but keeps the passage" do
     assert_difference("people(:buster).passages.count", -1, "removes the passage from the person") do
-      assert_difference("PersonPassage.count", -1, "removes the passage only for person") do
-        assert_no_difference("Passage.count", "doesn't delete the passage itself") do
-          delete :destroy, id: passages(:isaiah_40_8)
-        end
+      assert_no_difference("Passage.count", "doesn't delete the passage itself") do
+        delete :destroy, id: passages(:isaiah_40_8)
       end
     end
 

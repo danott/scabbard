@@ -1,10 +1,12 @@
 michael:
   name: Michael Bluth
   email: michael@thebluth.co
+  passages: isaiah_40_8, micah_6_8
 
 buster:
   name: Buster Bluth
   email: buster@thebluth.co
+  passages: isaiah_40_8
 
 george:
   name: George Bluth

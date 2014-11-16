@@ -15,3 +15,4 @@ class ActiveSupport::TestCase
     session.delete(:person_id)
   end
 end
+

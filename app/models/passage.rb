@@ -1,6 +1,5 @@
 class Passage < ActiveRecord::Base
-  has_many :person_passages
-  has_many :people, through: :person_passages
+  has_and_belongs_to_many :people
 
   validates :heading, presence: true
   validates :html,    presence: true

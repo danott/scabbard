@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130706061657) do
+ActiveRecord::Schema.define(version: 20141116214620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,25 +31,17 @@ ActiveRecord::Schema.define(version: 20130706061657) do
     t.datetime "updated_at"
   end
 
+  create_table "passages_people", id: false, force: true do |t|
+    t.integer "passage_id", null: false
+    t.integer "person_id",  null: false
+  end
+
+  add_index "passages_people", ["passage_id", "person_id"], name: "index_passages_people_on_passage_id_and_person_id", using: :btree
+  add_index "passages_people", ["person_id", "passage_id"], name: "index_passages_people_on_person_id_and_passage_id", using: :btree
+
   create_table "people", force: true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "people_passages", force: true do |t|
-    t.integer  "person_id"
-    t.integer  "passage_id"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "person_passages", force: true do |t|
-    t.integer  "person_id"
-    t.integer  "passage_id"
-    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
