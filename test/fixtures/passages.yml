@@ -1,10 +1,9 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
 isaiah_40_8:
-  heading: 'Isaiah 40:8'
-  html: '<div class="esv"><h2>Isaiah 40:8</h2><div class="esv-text"><div class="block-indent"><p class="line-group" id="p23040008.01-1"><span class="verse-num" id="v23040008-1">8&nbsp;</span>The grass withers, the flower fades,<br /><span class="indent"></span>but the word of our God will stand forever.</p></div></div></div>'
-  sha: 'ccc16e27f91bf583a61c9a395feb4106c8fa822a'
+  heading: Isaiah 40:8
+  html: <div class="esv"><h2>Isaiah 40:8</h2><div class="esv-text"><div class="block-indent"><p class="line-group" id="p23040008.01-1"><span class="verse-num" id="v23040008-1">8&nbsp;</span>The grass withers, the flower fades,<br /><span class="indent"></span>but the word of our God will stand forever.</p></div></div></div>
+  sha: ccc16e27f91bf583a61c9a395feb4106c8fa822a
+
+micah_6_8:
+  heading: Micah 6:8
+  html: <div class="esv"><h2>Micah 6:8</h2><div class="esv-text"><div class="block-indent"><p class="line-group" id="p33006008.01-1"><span class="verse-num" id="v33006008-1">8&nbsp;</span>He has told you, O man, what is good;<br /><span class="indent"></span>and what does the <span class="small-caps">Lord</span> require of you<br /> but to do justice, and to love kindness,<br /><span class="indent"></span>and to walk humbly with your God?</p></div></div></div>
+  sha: 33f09b72c5c298182b7c8a8f9754439fa87a58d8

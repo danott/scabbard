@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def set_person
-    @person = Person.first
+    @person = Person.find session[:person_id]
   end
 
   def offline_enabled?

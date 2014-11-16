@@ -14,11 +14,24 @@ class FindPassageUsingApi
   private
 
   def cached_passage_query
-    CachedPassageQuery.find_or_create_by(query_string: query_string, passage_id: passage_from_api.id)
+    CachedPassageQuery.find_or_initialize_by(query_string: query_string).tap do |cached_passage_query|
+      if cached_passage_query.new_record?
+        cached_passage_query.passage = passage_from_api
+        cached_passage_query.save
+      end
+    end
   end
 
   def passage_from_api
-    esv_passage = EsvBiblePassageQuery.find(query_string)
-    Passage.find_or_create_by(heading: esv_passage.heading, html: esv_passage.html)
+    Passage.find_or_initialize_by(heading: esv_passage.heading) do |passage|
+      if passage.new_record?
+        passage.html = esv_passage.html
+        passage.save
+      end
+    end
+  end
+
+  def esv_passage
+    @esv_passage ||= EsvBiblePassageQuery.find(query_string)
   end
 end

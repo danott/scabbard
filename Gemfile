@@ -13,6 +13,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-bundler'
   gem 'guard-minitest'
+  gem 'minitest-focus'
   gem 'pry'
   gem 'pry-remote'
   gem 'yaml_db'
