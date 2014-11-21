@@ -1,5 +1,4 @@
 require File.expand_path('../boot', __FILE__)
-
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -21,5 +20,13 @@ module Scabbard
     # config.i18n.default_locale = :de
     config.autoload_paths += %W(#{config.root}/app/services)
     config.autoload_paths += %W(#{config.root}/app/services/concerns)
+
+    config.generators do |g|
+      g.orm :active_record
+      g.template_engine :erb
+      g.test_framework :test_unit
+      g.stylesheets false
+      g.javascripts false
+    end
   end
 end

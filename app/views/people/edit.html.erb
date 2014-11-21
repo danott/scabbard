@@ -1,0 +1,29 @@
+<h1>Signed in as <%= @person.email %></h1>
+
+<% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
+
+<h2>Change password</h2>
+
+<%= form_for @person, url: person_url do |f| %>
+  <div>
+    <%= f.label :current_password %>
+    <%= f.password_field :current_password %>
+  </div>
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div>
+    <%= f.submit "Change password" %>
+  </div>
+<% end %>
+
+<h2>Delete account</h2>
+
+<%= button_to "Delete account", person_url, method: :delete %>

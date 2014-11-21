@@ -5,8 +5,18 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  def sign_in(person)
+    session[:person_id] = person.id
+  end
+
+  def sign_out
+    @person = nil
+    reset_session
+  end
+
   def set_person
-    @person = Person.find session[:person_id]
+    # TODO - NullPerson
+    @person = Person.find_by(id: session[:person_id])
   end
 
   def offline_enabled?
