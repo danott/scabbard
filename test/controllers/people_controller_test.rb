@@ -1,32 +1,45 @@
 require "test_helper"
 
 class PeopleControllerTest < ActionController::TestCase
+  setup do
+    sign_in(:guest)
+  end
+
   test "should get new" do
     get :new
     assert_response :success
   end
 
   test "create with valid params" do
-    assert_difference("Person.count") do
-      post :create, person: {
-        name: "Annyong",
-        email: "annyong@thebluth.co",
-        password: "hello",
-        password_confirmation: "hello"
-      }
+    post :create, person: {
+      name: "Annyong",
+      email: "annyong@thebluth.co",
+      password: "hello",
+      password_confirmation: "hello"
+    }
+
+    people(:guest).reload.tap do |person|
+      assert_equal(person.name, "Annyong")
+      assert_equal(person.email, "annyong@thebluth.co")
+      refute_nil(person.password_digest)
     end
+
     assert_redirected_to passages_path
   end
 
   test "create with bogus params" do
-    assert_no_difference("Person.count") do
-      post :create, person: {
-        name: "Annyong",
-        email: "annyong@thebluth.co",
-        password: "hello",
-        password_confirmation: "ello"
-      }
+    post :create, person: {
+      name: "Annyong",
+      email: "annyong@thebluth.co",
+      password: "hello",
+      password_confirmation: "ello"
+    }
+
+    people(:guest).reload.tap do |person|
+      assert_equal(person.name, "GUEST")
+      assert_nil(person.password_digest)
     end
+
     assert_response(:success)
     assert_not_nil(flash[:error])
   end
@@ -52,11 +65,14 @@ class PeopleControllerTest < ActionController::TestCase
     end
   end
 
-  test "should get destroy" do
+  test "should effectively destroy the person" do
     sign_in(:michael)
-    assert_difference("Person.count", -1, "person should be deleted") do
-      delete :destroy
+    delete :destroy
+
+    people(:michael).reload.tap do |person|
+      assert_equal(person.name, "DESTROYED")
+      assert_nil(person.email)
+      assert_nil(person.password_digest)
     end
-    assert_response :success
   end
 end

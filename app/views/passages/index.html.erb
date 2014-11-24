@@ -1,11 +1,6 @@
-<nav>
-  <ul>
-    <li><%= button_to "Sign out", session_path, method: :delete %></li>
-    <li><%= link_to "Edit account", edit_person_path %></li>
-    <li><%= link_to "Add a passage", new_passage_path %></li>
-  </ul>
-</nav>
+<h1>Passages</h1>
 
 <ul>
   <%= render @passages %>
+  <li><%= link_to "Add a passage", new_passage_path %></li>
 </ul>

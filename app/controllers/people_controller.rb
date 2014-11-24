@@ -4,9 +4,9 @@ class PeopleController < ApplicationController
   end
 
   def create
-    @person = Person.new(person_params)
+    @person = Person.find(@person.id) # Guest -> Person
 
-    if @person.save
+    if @person.update_attributes(person_params)
       sign_in(@person)
       redirect_to :passages
     else
@@ -19,6 +19,26 @@ class PeopleController < ApplicationController
   end
 
   def update
+    if updating_password?
+      update_password
+    else
+      update_name
+    end
+  end
+
+  def destroy
+    @person = Guest.find(@person.id) # Person -> Guest
+    @person.update_attributes(name: "DESTROYED", email: nil, password_digest: nil)
+    sign_out
+  end
+
+  private
+
+  def updating_password?
+    params[:person][:current_password].present?
+  end
+
+  def update_password
     if reauthenticate_person && @person.update_attributes(person_params)
       redirect_to edit_person_path, flash: { info: "Password changed" }
     else
@@ -26,12 +46,13 @@ class PeopleController < ApplicationController
     end
   end
 
-  def destroy
-    @person.destroy
-    sign_out
+  def update_name
+    if @person.update_attributes(person_params)
+      redirect_to edit_person_path, flash: { info: "Name changed" }
+    else
+      redirect_to edit_person_path, flash: { error: "Couldn't change name" }
+    end
   end
-
-  private
 
   def reauthenticate_person
     @person.authenticate(params[:person][:current_password])

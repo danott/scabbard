@@ -14,3 +14,6 @@ george:
   name: George Bluth
   email: george@thebluth.co
   password_digest: <%= default_password_digest %>
+
+guest:
+  name: GUEST

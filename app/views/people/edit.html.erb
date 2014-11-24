@@ -4,6 +4,18 @@
   <%= content_tag :div, value, class: "flash #{key}" %>
 <% end %>
 
+<h2>Change name</h2>
+
+<%= form_for @person, url: person_url do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.submit "Change name" %>
+  </div>
+<% end %>
+
 <h2>Change password</h2>
 
 <%= form_for @person, url: person_url do |f| %>

@@ -1,0 +1,6 @@
+<% if @person.passages.any? %>
+  <p>
+    Want to access your <%= "passage".pluralize(@person.passages.count) %>
+    on another device?  <%= link_to "Create an account", new_person_path %>.
+  </p>
+<% end %>
