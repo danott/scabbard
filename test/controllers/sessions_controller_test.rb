@@ -16,6 +16,5 @@ class SessionsControllerTest < ActionController::TestCase
     sign_in(:michael)
     delete :destroy
     assert_redirected_to new_session_path
-    assert_nil assigns(:person)
   end
 end

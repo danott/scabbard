@@ -1,3 +1,9 @@
+<p>
+  <%= link_to "Back", passages_path %>
+</p>
+
+<h1>Add a Passage</h1>
+
 <%= form_tag passages_path do %>
   <%= text_field_tag :query_string %>
 <% end %>

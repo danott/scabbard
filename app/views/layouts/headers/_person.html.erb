@@ -1,0 +1,8 @@
+<p>Signed in as <%= @person.name %></p>
+
+<nav>
+  <ul>
+    <li><%= button_to "Sign out", session_path, method: :delete %></li>
+    <li><%= link_to "Edit account", edit_person_path %></li>
+  </ul>
+</nav>
