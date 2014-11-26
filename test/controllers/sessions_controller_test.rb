@@ -14,7 +14,7 @@ class SessionsControllerTest < ActionController::TestCase
 
   test "signing out" do
     sign_in(:michael)
-    delete :destroy
-    assert_redirected_to new_session_path
+    get :destroy
+    assert_redirected_to sign_in_path
   end
 end

@@ -9,13 +9,13 @@ class SessionsController < ApplicationController
       sign_in(@person)
       redirect_to passages_path
     else
-      redirect_to new_session_path, flash: { error: "Couldn't sign in" }
+      redirect_to sign_in_path, flash: { error: "Couldn't sign in" }
     end
   end
 
   def destroy
     sign_out
-    redirect_to new_session_path
+    redirect_to sign_in_path
   end
 
   private

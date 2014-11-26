@@ -6,7 +6,7 @@
   <%= content_tag :div, value, class: "flash #{key}" %>
 <% end %>
 
-<%= form_tag session_path do %>
+<%= form_tag sign_in_path do %>
   <div>
     <%= label_tag :email %>
     <%= text_field_tag :email, '' %>
