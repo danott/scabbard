@@ -1,5 +1,7 @@
 module ApplicationHelper
-  def render_header
-    render partial: "layouts/headers/#{@person.class.name.downcase}"
+  def render_footer
+    unless %[people sessions].include? params[:controller]
+      render partial: "layouts/footers/#{@person.class.name.downcase}"
+    end
   end
 end

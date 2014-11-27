@@ -1,9 +1,13 @@
 <p>
-  <%= link_to "Back", passages_path %>
+  <%= link_to "Passages", passages_path %>
 </p>
 
 <h1>Add a Passage</h1>
 
+<% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
+
 <%= form_tag passages_path do %>
-  <%= text_field_tag :query_string %>
+  <%= text_field_tag :query_string, nil, placeholder: "Isa 40:8" %>
 <% end %>

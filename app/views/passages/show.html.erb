@@ -1,3 +1,6 @@
-<%= link_to "Back", passages_url %>
+<p>
+  <%= link_to "Passages", passages_path %>
+</p>
+
 <%= @passage.html %>
 <%= button_to "Remove", passage_path(@passage), method: :delete %>

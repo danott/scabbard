@@ -1,0 +1,5 @@
+<% if @person.passages.many? %>
+  <p>
+    <%= link_to "Create an account", new_person_path %> to access your passages on another device.
+  </p>
+<% end %>

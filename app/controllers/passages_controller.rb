@@ -23,7 +23,7 @@ class PassagesController < ApplicationController
   end
 
   rescue_from EsvBiblePassageQuery::PassageNotFound do |exception|
-    head :not_found
+    redirect_to new_passage_path, flash: { error: "No passage found" }
   end
 
   private
