@@ -12,7 +12,7 @@ class PassageTest < ActiveSupport::TestCase
   test "#heading=" do
     previous = @passage.sha
     @passage.heading = "Something Else"
-    assert(@passage.sha != previous, "setting heading should change sha")
+    refute_equal(@passage.sha, previous, "setting heading should change sha")
   end
 
   test "#sha=" do

@@ -70,7 +70,8 @@ class PassagesControllerTest < ActionController::TestCase
       end
     end
 
-    assert_response :not_found
+    assert_redirected_to new_passage_path
+    refute_nil flash[:error]
   end
 
   test "destroying removes the passage from the person's list, but keeps the passage" do
