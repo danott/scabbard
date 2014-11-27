@@ -12,8 +12,8 @@ class PassagesController < ApplicationController
   end
 
   def create
-    @passage = FindPassage.call(params.require(:query_string))
-    @person.passages << @passage unless @person.passages.include? @passage
+    @passage = FindPassage.call(params[:query_string])
+    @person.add_passage(@passage)
     redirect_to @passage
   end
 
@@ -29,6 +29,6 @@ class PassagesController < ApplicationController
   private
 
   def set_passage
-    @passage = Passage.find_by! sha: params.require(:id)
+    @passage = Passage.find_by!(sha: params.require(:id))
   end
 end
