@@ -7,6 +7,7 @@ gem 'coffee-rails'
 gem 'pg'
 gem 'rails', '~> 4.1.0'
 gem 'sass-rails'
+gem 'spring'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
