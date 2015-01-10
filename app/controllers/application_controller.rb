@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :set_person
+  before_action :set_person
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

@@ -1,6 +1,6 @@
 class CacheManifestsController < ApplicationController
-  before_filter :set_headers
-  before_filter :handle_offline_disabled
+  before_action :set_headers
+  before_action :handle_offline_disabled
 
   def show
     @passages = @person.passages
