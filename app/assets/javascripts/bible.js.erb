@@ -1,1 +1,9 @@
 var Bible = <%= Rails.application.assets['bible.json'].to_s %>;
+
+var findBook = function(fuzzyString) {
+  var regExp = new RegExp(fuzzyString.toLowerCase().split('').join('.*'))
+
+  return Bible.filter(function(book) {
+    return regExp.test(book.name.toLowerCase());
+  });
+};
