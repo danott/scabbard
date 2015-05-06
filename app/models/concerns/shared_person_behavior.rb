@@ -7,6 +7,6 @@ module SharedPersonBehavior
   end
 
   def add_passage(passage)
-    passages << passage unless passages.include?(passage)
+    self.passage_ids = passage_ids + [passage.id]
   end
 end
