@@ -3,4 +3,4 @@
 </p>
 
 <%= @passage.html %>
-<%= button_to "Remove", passage_path(@passage), method: :delete %>
+<%= button_to "Remove", passage_path(@passage), method: "delete", remote: true %>

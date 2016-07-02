@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
 gem 'bourbon'
-gem 'coffee-rails'
+gem 'jquery-rails'
 gem 'mysql2'
 gem 'rails', '~> 5.0.0'
 gem 'sass-rails'
 gem 'turbolinks'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 group :development, :test do
   gem 'byebug'

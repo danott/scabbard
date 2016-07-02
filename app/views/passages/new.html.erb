@@ -8,7 +8,14 @@
   <%= content_tag :div, value, class: "flash #{key}" %>
 <% end %>
 
-<%= form_tag passages_path do %>
-  <%= text_field_tag :query_string, nil, placeholder: "Isa 40:8" %>
-  <%= submit_tag "Search" %>
+<%= form_tag passages_path, method: "post", remote: true, id: "new_passage_form" do %>
+  <%= text_field_tag :query_string, nil, placeholder: "Isa 40:8", autofocus: true %>
+  <%= submit_tag "Search", data: { disable_with: "Searching" } %>
+<% end %>
+
+<%= javascript_tag do %>
+  jQuery(document).one("turbolinks:before-cache", function() {
+    jQuery(".flash").hide()
+    document.getElementById("new_passage_form").reset()
+  })
 <% end %>
