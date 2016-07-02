@@ -9,7 +9,14 @@
 <% end %>
 
 <%= form_tag passages_path, method: "post", remote: true, id: "new_passage_form" do %>
-  <%= text_field_tag :query_string, nil, placeholder: "Isa 40:8", autofocus: true %>
+  <noscript>
+    <%= text_field_tag :query_string,
+                       nil,
+                       placeholder: "Isa 40:8",
+                       autofocus: true,
+                       data: { behavior: "bible-autocomplete" } %>
+  </noscript>
+  <%= react_component "BibleAutocomplete", name: "query_string" %>
   <%= submit_tag "Search", data: { disable_with: "Searching" } %>
 <% end %>
 

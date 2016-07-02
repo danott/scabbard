@@ -1,4 +1,4 @@
-[
+var Bible = [
   { "order": 1, "short": "gen", "name": "Genesis", "chapters": 50, "counts": [ 31, 25, 24, 26, 32, 22, 24, 22, 29, 32, 32, 20, 18, 24, 21, 16, 27, 33, 38, 18, 34, 24, 20, 67, 34, 35, 46, 22, 35, 43, 54, 33, 20, 31, 29, 43, 36, 30, 23, 23, 57, 38, 34, 34, 28, 34, 31, 22, 33, 26 ] },
   { "order": 2, "short": "exo", "name": "Exodus", "chapters": 40, "counts": [ 22, 25, 22, 31, 23, 30, 29, 28, 35, 29, 10, 51, 22, 31, 27, 36, 16, 27, 25, 26, 37, 30, 33, 18, 40, 37, 21, 43, 46, 38, 18, 35, 23, 35, 35, 38, 29, 31, 43, 38 ] },
   { "order": 3, "short": "lev", "name": "Leviticus", "chapters": 27, "counts": [ 17, 16, 17, 35, 26, 23, 38, 36, 24, 20, 47, 8, 59, 57, 33, 34, 16, 30, 37, 27, 24, 33, 44, 23, 55, 46, 34 ] },
@@ -38,7 +38,7 @@
   { "order": 37, "short": "hag", "name": "Haggai", "chapters": 2, "counts": [ 15, 23 ] },
   { "order": 38, "short": "zec", "name": "Zechariah", "chapters": 14, "counts": [ 17, 17, 10, 14, 11, 15, 14, 23, 17, 12, 17, 14, 9, 21 ] },
   { "order": 39, "short": "mal", "name": "Malachi", "chapters": 3, "counts": [ 14, 17, 24 ] },
-  { "order": 40, "short": "mat", "name": "Matt", "chapters": 28, "counts": [ 25, 23, 17, 25, 48, 34, 29, 34, 38, 42, 30, 50, 58, 36, 39, 28, 27, 35, 30, 34, 46, 46, 39, 51, 46, 75, 66, 20 ]},
+  { "order": 40, "short": "mat", "name": "Matthew", "chapters": 28, "counts": [ 25, 23, 17, 25, 48, 34, 29, 34, 38, 42, 30, 50, 58, 36, 39, 28, 27, 35, 30, 34, 46, 46, 39, 51, 46, 75, 66, 20 ]},
   { "order": 41, "short": "mrk", "name": "Mark", "chapters": 16, "counts": [ 45, 28, 35, 41, 43, 56, 37, 38, 50, 52, 33, 44, 37, 72, 47, 20 ]},
   { "order": 42, "short": "lke", "name": "Luke", "chapters": 24, "counts": [ 80, 52, 38, 44, 39, 49, 50, 56, 62, 42, 54, 59, 35, 35, 32, 31, 37, 43, 48, 47, 38, 71, 56, 53 ]},
   { "order": 43, "short": "jhn", "name": "John", "chapters": 21, "counts": [ 51, 25, 36, 54, 47, 71, 53, 59, 41, 42, 57, 50, 38, 31, 27, 33, 26, 40, 42, 31, 25 ]},
@@ -66,3 +66,11 @@
   { "order": 65, "short": "jud", "name": "Jude", "chapters": 1, "counts": [ 25 ]},
   { "order": 66, "short": "rev", "name": "Revelation", "chapters": 22, "counts": [ 20, 29, 22, 11, 14, 17, 17, 13, 21, 11, 19, 17, 18, 20, 8, 21, 18, 24, 21, 15, 27, 21 ]}
 ]
+
+var findBook = function(fuzzyString) {
+  var regExp = new RegExp(fuzzyString.toLowerCase().split('').join('.*'))
+
+  return Bible.filter(function(book) {
+    return regExp.test(book.name.toLowerCase());
+  });
+};
