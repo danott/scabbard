@@ -1,0 +1,15 @@
+@import "bourbon";
+@import "normalize";
+
+body {
+  font-family: "-apple-system", sans-serif;
+  line-height: 1.5;
+  margin: 1em;
+  color: #202020;
+}
+
+.esv-text {
+  .verse-num, .chapter-num {
+    display: none;
+  }
+}

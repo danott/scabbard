@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'active_model_serializers', '= 0.9.1'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bourbon'
 gem 'coffee-rails'
