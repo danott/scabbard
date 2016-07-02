@@ -16,7 +16,7 @@ class PassagesControllerTest < ActionController::TestCase
   end
 
   test "should show passage" do
-    get :show, id: passages(:isaiah_40_8)
+    get :show, params: { id: passages(:isaiah_40_8) }
     assert_response :success
   end
 
@@ -29,7 +29,7 @@ class PassagesControllerTest < ActionController::TestCase
     assert_no_difference("Passage.count", "it doesn't duplicate of the passage") do
       assert_no_difference("CachedPassageQuery.count", "it doesn't duplicate the cached passage query") do
         assert_difference("people(:buster).passages.count", 1, "it adds the passage to the person") do
-          post :create, query_string: "mic 6:8"
+          post :create, params: { query_string: "mic 6:8" }
         end
       end
     end
@@ -41,7 +41,7 @@ class PassagesControllerTest < ActionController::TestCase
     assert_difference("Passage.count", 1, "it creates the passage") do
       assert_difference("CachedPassageQuery.count", 1, "it creates the cached passage query") do
         assert_difference("people(:buster).passages.count", 1, "it adds the passage to the person") do
-          post :create, query_string: "John 1:1"
+          post :create, params: { query_string: "John 1:1" }
         end
       end
     end
@@ -53,7 +53,7 @@ class PassagesControllerTest < ActionController::TestCase
     assert_no_difference("Passage.count", "it doesn't create a duplicate of the passage") do
       assert_difference("CachedPassageQuery.count", 1, "it creates the cached passage query") do
         assert_difference("people(:buster).passages.count", 1, "it adds the passage to the person") do
-          post :create, query_string: "Micah 6:8"
+          post :create, params: { query_string: "Micah 6:8" }
         end
       end
     end
@@ -65,7 +65,7 @@ class PassagesControllerTest < ActionController::TestCase
     assert_no_difference("Passage.count", "it doesn't create a duplicate of the passage") do
       assert_no_difference("CachedPassageQuery.count", "it creates the cached passage query") do
         assert_no_difference("people(:buster).passages.count", "it doesn't add junk to the person") do
-          post :create, query_string: "Junk 99:100"
+          post :create, params: { query_string: "Junk 99:100" }
         end
       end
     end
@@ -77,7 +77,7 @@ class PassagesControllerTest < ActionController::TestCase
   test "destroying removes the passage from the person's list, but keeps the passage" do
     assert_difference("people(:buster).passages.count", -1, "removes the passage from the person") do
       assert_no_difference("Passage.count", "doesn't delete the passage itself") do
-        delete :destroy, id: passages(:isaiah_40_8)
+        delete :destroy, params: { id: passages(:isaiah_40_8).to_param }
       end
     end
 

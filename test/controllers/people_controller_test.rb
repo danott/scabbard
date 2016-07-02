@@ -11,11 +11,13 @@ class PeopleControllerTest < ActionController::TestCase
   end
 
   test "create with valid params" do
-    post :create, person: {
-      name: "Annyong",
-      email: "annyong@thebluth.co",
-      password: "hello",
-      password_confirmation: "hello"
+    post :create, params: {
+      person: {
+        name: "Annyong",
+        email: "annyong@thebluth.co",
+        password: "hello",
+        password_confirmation: "hello"
+      },
     }
 
     people(:guest).reload.tap do |person|
@@ -28,11 +30,13 @@ class PeopleControllerTest < ActionController::TestCase
   end
 
   test "create with bogus params" do
-    post :create, person: {
-      name: "Annyong",
-      email: "annyong@thebluth.co",
-      password: "hello",
-      password_confirmation: "ello"
+    post :create, params: {
+      person: {
+        name: "Annyong",
+        email: "annyong@thebluth.co",
+        password: "hello",
+        password_confirmation: "ello"
+      },
     }
 
     people(:guest).reload.tap do |person|
@@ -53,10 +57,12 @@ class PeopleControllerTest < ActionController::TestCase
   test "updating password" do
     sign_in(:michael)
 
-    patch :update, person: {
-      current_password: "password",
-      password: "cornballer",
-      password_confirmation: "cornballer"
+    patch :update, params: {
+      person: {
+        current_password: "password",
+        password: "cornballer",
+        password_confirmation: "cornballer"
+      },
     }
 
     people(:michael).reload.tap do |person|

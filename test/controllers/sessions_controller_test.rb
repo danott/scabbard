@@ -7,7 +7,7 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test "signing in" do
-    post :create, email: "michael@thebluth.co", password: "password"
+    post :create, params: { email: "michael@thebluth.co", password: "password" }
     assert_redirected_to passages_path
     assert_equal assigns(:person), people(:michael)
   end
