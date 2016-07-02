@@ -14,7 +14,7 @@ class FindPassageUsingApi
   private
 
   def cached_passage_query
-    CachedPassageQuery.find_or_initialize_by(query_string: query_string).tap do |cached_passage_query|
+    CachedPassageQuery.find_or_initialize_by(query_string: query_string) do |cached_passage_query|
       if cached_passage_query.new_record?
         cached_passage_query.passage = passage_from_api
         cached_passage_query.save
