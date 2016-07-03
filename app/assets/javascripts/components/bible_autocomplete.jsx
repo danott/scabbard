@@ -18,6 +18,8 @@ var BibleAutocomplete = React.createClass({
           ref="input"
           autoFocus
           autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
           value={this.state.value}
           onChange={this.handleChange}
           name={this.props.name}
