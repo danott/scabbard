@@ -16,20 +16,26 @@ var BibleAutocomplete = React.createClass({
       <div>
         <input
           ref="input"
-          autofocus
+          autoFocus
           autoComplete="off"
           value={this.state.value}
           onChange={this.handleChange}
           name={this.props.name}
-          placeholder="Isa 40:8"
+          placeholder="Isaiah 40:8"
           />
-        {this.getSuggestions().map((suggestion) => (
-          <div key={suggestion}>
+        <div>
+          {this.getSuggestions().normalized}
+        </div>
+        <div>
+          {this.getSuggestions().suggesting}
+        </div>
+        {this.getSuggestions().suggestions.map(({ abbreviated, normalized }) => (
+          <div key={abbreviated}>
             <a
               href="javascript://"
-              onClick={this.handleClick(suggestion)}
+              onClick={this.handleClick(normalized)}
               >
-              {suggestion}
+              {abbreviated}
             </a>
           </div>
         ))}
@@ -48,13 +54,6 @@ var BibleAutocomplete = React.createClass({
   },
 
   getSuggestions() {
-    const parts = this.state.value.split(" ").filter((s) => s.length > 0)
-    const books = findBook(parts[0] || "")
-
-    if (books.length !== 1) {
-      return books.map((book) => book.name)
-    }
-
-    return books.map((book) => book.name)
+    return suggestions(this.state.value)
   }
 })

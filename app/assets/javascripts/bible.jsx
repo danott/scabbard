@@ -67,10 +67,65 @@ var Bible = [
   { "order": 66, "short": "rev", "name": "Revelation", "chapters": 22, "counts": [ 20, 29, 22, 11, 14, 17, 17, 13, 21, 11, 19, 17, 18, 20, 8, 21, 18, 24, 21, 15, 27, 21 ]}
 ]
 
-var findBook = function(fuzzyString) {
-  var regExp = new RegExp(fuzzyString.toLowerCase().split('').join('.*'))
+var findBookByName = function(name) {
+  var regExp = new RegExp(`^${name}`, "i")
+  return Bible.filter((book) => regExp.test(book.name.toLowerCase()))[0]
+}
 
-  return Bible.filter(function(book) {
-    return regExp.test(book.name.toLowerCase());
-  });
-};
+function parseReference(string) {
+  const parts = string.replace(/[:-]/g, " ").split(" ").filter((s) => s.length > 0)
+  let book = parts.shift() || null
+
+  if (parseInt(book)) {
+    book = `${book} ${parts.shift()}`
+  }
+
+  const chapter = parseInt(parts.shift(), 10) || null
+  const verseStart = parseInt(parts.shift(), 10) || null
+  const verseEnd = parseInt(parts.shift(), 10) || null
+
+  return { book, chapter, verseStart, verseEnd }
+}
+
+function suggestions(string) {
+  const reference = parseReference(string)
+  const book = findBookByName(reference.book)
+  let normalized, suggesting, suggestions
+
+  normalized = null
+  suggesting = null
+  suggestions = []
+
+  if (book && !reference.verseEnd) {
+    if (reference.verseStart) {
+      normalized = `${book.name} ${reference.chapter}:${reference.verseStart}`
+      suggesting = "verseEnd"
+      suggestions = Array.apply(null, Array(book.counts[reference.chapter - 1] - reference.verseStart)).map((item, index) => {
+        const verseEnd = reference.verseStart + index + 1
+        return {
+          normalized: `${book.name} ${reference.chapter}:${reference.verseStart}-${verseEnd}`,
+          abbreviated: verseEnd.toString()
+        }
+      })
+    } else if (reference.chapter) {
+      normalized = `${book.name} ${reference.chapter}`
+      suggesting = "verseStart"
+      suggestions = Array.apply(null, Array(book.counts[reference.chapter - 1])).map((item, index) => {
+        const verseStart = index + 1
+        return {
+          normalized: `${book.name} ${reference.chapter}:${verseStart}`,
+          abbreviated: verseStart.toString()
+        }
+      })
+    } else {
+      normalized = book.name
+      suggesting = "chapter"
+      suggestions = book.counts.map((item, index) => {
+        const chapter = index + 1
+        return { normalized: `${book.name} ${chapter}`, abbreviated: chapter.toString() }
+      })
+    }
+  }
+
+  return { normalized, suggesting, suggestions }
+}
